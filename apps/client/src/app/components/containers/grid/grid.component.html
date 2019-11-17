@@ -1,0 +1,20 @@
+<div class="grid" *ngIf="isFirstLoading">
+  <lazy-loading-card-shimmer *ngFor="let cardShimmer of [0, 1, 2, 3, 4, 5, 6, 7]"></lazy-loading-card-shimmer>
+</div>
+
+<ng-container *ngIf="!isFirstLoading">
+  <div class="grid">
+    <lazy-loading-card
+      *ngFor="let card of cards"
+      [type]="card.type"
+      [title]="card.title"
+      [img]="card.img"
+      [description]="card.description"
+      [tags]="card.tags">
+    </lazy-loading-card>
+  </div>
+
+  <div *ngIf="isLoading" class="spinner-container">
+    <span class="spinner"></span>
+  </div>
+</ng-container>
