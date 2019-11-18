@@ -14,8 +14,14 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   fetchItems(): Observable<Item[]> {
-    return this.http
-      .get(`${this.baseURL}?pageNumber=${this.pageNumber}&pageSize=20` )
+    return this.http.get(
+      this.baseURL,
+      {
+        params: new HttpParams()
+          .set('pageNumber', this.pageNumber)
+          .set('pageSize', 20)
+      }
+    )
       .pipe(map((res: { items }) => res.items));
   }
 
